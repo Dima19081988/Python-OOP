@@ -132,3 +132,49 @@ def average_lecturer_grade_course(lecturers, course):
     else:
         return 0
       
+student1 = Student('Alice', 'Ivanova', 'F')
+student2 = Student('Bob', 'Petrov', 'M')
+student1.courses_in_progress += ['Python', 'Math']
+student2.courses_in_progress += ['Python', 'English']
+student1.finished_courses += ['Intro to Programming']
+student2.finished_courses += ['Basics of Python']
+
+lecturer1 = Lecturer('Dr.', 'Smith')
+lecturer2 = Lecturer('Prof.', 'Johnson')
+lecturer1.courses_attached += ['Python', 'Math']
+lecturer2.courses_attached += ['Python', 'English']
+
+reviewer1 = Reviewer('Mr.', 'Brown')
+reviewer2 = Reviewer('Ms.', 'Davis')
+reviewer1.courses_attached += ['Python', 'Math']
+reviewer2.courses_attached += ['Python', 'English']
+
+# Студенты ставят оценки лекторам
+student1.rate_lecture(lecturer1, 'Python', 9)
+student1.rate_lecture(lecturer2, 'Python', 8)
+student2.rate_lecture(lecturer2, 'Python', 7)
+
+# Ревьюверы ставят оценки студентам
+reviewer1.rate_hw(student1, 'Python', 10)
+reviewer1.rate_hw(student1, 'Math', 9)
+reviewer2.rate_hw(student2, 'Python', 8)
+reviewer2.rate_hw(student2, 'English', 7)
+
+# Вывод информации
+print(student1)
+print(student2)
+print(lecturer1)
+print(lecturer2)
+print(reviewer1)
+print(reviewer2)
+
+# Сравнение лекторов и студентов
+print(f"lecturer1 > lecturer2? {lecturer1 > lecturer2}")
+print(f"student1 < student2? {student1 < student2}")
+
+# Подсчет среднего балла по курсу
+students = [student1, student2]
+lecturers = [lecturer1, lecturer2]
+
+print(f"Средняя оценка студентов за курс Python: {average_grade_course(students, 'Python'):.1f}")
+print(f"Средняя оценка лекторов за курс Python: {average_lecturer_grade_course(lecturers, 'Python'):.1f}")
