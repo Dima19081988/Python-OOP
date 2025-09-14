@@ -17,7 +17,7 @@ class Student:
                 lecturer.grades[course] = [grade]
         else:
             return
-        
+
     def average_grade(self):
         total_grades = []
         for grades_list in self.grades.values():
@@ -61,12 +61,11 @@ class Mentor:
         self.courses_attached = []
 
         
-
 class Lecturer(Mentor):
     def __init__(self, name, surname):
         super().__init__(name, surname)
         self.grades = {}
-
+    
     def average_grade(self):
         total_grades = []
         for grades_list in self.grades.values():
@@ -112,35 +111,65 @@ class Reviewer(Mentor):
     def __str__(self):
         return (f"Имя: {self.name}\nФамилия: {self.surname}")
 
-lecturer1 = Lecturer('Иван', 'Иванов')
-lecturer1.grades = {'Python': [9, 10], 'Java': [8]}
 
-lecturer2 = Lecturer('Пётр', 'Петров')
-lecturer2.grades = {'Python': [7, 8, 9], 'C++': [10]}
+# 4 задание
+    
+def average_grade_course(students, course):
+    total_grades = []
+    for student in students:
+        total_grades.extend(student.grades[course])
+    if total_grades:
+        return sum(total_grades) / len(total_grades)
+    else:
+        return 0
+    
+def average_lecturer_grade_course(lecturers, course):
+    total_grades = []
+    for lecturer in lecturers:
+            total_grades.extend(lecturer.grades[course])
+    if total_grades:
+        return sum(total_grades) / len(total_grades)
+    else:
+        return 0
+      
 
-print(lecturer1 > lecturer2)  # True или False по средней оценке
+# lecturer1 = Lecturer('Иван', 'Иванов')
+# lecturer1.grades = {'Python': [9, 10], 'Java': [8]}
 
-student1 = Student('Алёха', 'Смирнова', 'Ж')
-student1.grades = {'Python': [8, 9, 10], 'Java': [7]}
+# lecturer2 = Lecturer('Пётр', 'Петров')
+# lecturer2.grades = {'Python': [7, 8, 9], 'C++': [10]}
 
-student2 = Student('Олег', 'Иванов', 'М')
-student2.grades = {'Python': [7, 8], 'Java': [6, 7, 7]}
+# print(lecturer1 > lecturer2)  # True или False по средней оценке
 
-print(student1 < student2)  # True или False по средней оценке
-print(student1 == student2) # True или False
+# student1 = Student('Алёха', 'Смирнова', 'Ж')
+# student1.grades = {'Python': [8, 9, 10], 'Java': [7]}
 
+# student2 = Student('Олег', 'Иванов', 'М')
+# student2.grades = {'Python': [7, 8], 'Java': [6, 7, 7]}
 
-# lecturer = Lecturer('Иван', 'Иванов')
-# reviewer = Reviewer('Пётр', 'Петров')
-# student = Student('Алёхина', 'Ольга', 'Ж')
+# print(student1 < student2)  # True или False по средней оценке
+# print(student1 == student2) # True или False
+
+# students = [student1, student2]
+# lecturers = [lecturer1, lecturer2]
+
+# print("Средняя оценка студентов за курс Python:",
+#       average_grade_course(students, 'Python'))
+
+# print("Средняя оценка лекторов за курс Python:",
+#       average_lecturer_grade_course(lecturers, 'Python'))
+
+# # lecturer = Lecturer('Иван', 'Иванов')
+# # reviewer = Reviewer('Пётр', 'Петров')
+# # student = Student('Алёхина', 'Ольга', 'Ж')
  
-# student.courses_in_progress += ['Python', 'Java']
-# lecturer.courses_attached += ['Python', 'C++']
-# reviewer.courses_attached += ['Python', 'C++']
+# # student.courses_in_progress += ['Python', 'Java']
+# # lecturer.courses_attached += ['Python', 'C++']
+# # reviewer.courses_attached += ['Python', 'C++']
  
-# print(student.rate_lecture(lecturer, 'Python', 7))   # None
-# print(student.rate_lecture(lecturer, 'Java', 8))     # Ошибка
-# print(student.rate_lecture(lecturer, 'C++', 8))      # Ошибка
-# print(student.rate_lecture(reviewer, 'Python', 6))   # Ошибка
+# # print(student.rate_lecture(lecturer, 'Python', 7))   # None
+# # print(student.rate_lecture(lecturer, 'Java', 8))     # Ошибка
+# # print(student.rate_lecture(lecturer, 'C++', 8))      # Ошибка
+# # print(student.rate_lecture(reviewer, 'Python', 6))   # Ошибка
  
-# print(lecturer.grades)  # {'Python': [7]}  
+# # print(lecturer.grades)  # {'Python': [7]}  
